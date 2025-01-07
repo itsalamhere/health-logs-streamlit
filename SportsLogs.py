@@ -1312,7 +1312,7 @@ else:
     st.sidebar.write("###")
     
     
-    ### Showing the data-viz as tabs at the main area
+    ### Showing the data-viz of tabs at the main area
     
     ( tab1,  tab2,  tab3,  tab4,  tab5,
       tab6,  tab7,  tab8,  tab9, tab10,
