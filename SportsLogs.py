@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ## Import libraries:
     
 ### Data Processing
@@ -2748,14 +2747,14 @@ else:
         'Duration for the **last N days**:', 7, 150, 28)
     st.sidebar.write("###")
     
-    st.sidebar.subheader('🔋💯 **Wellness Score**')
-    params_wellness = st.sidebar.slider(
-      'Wellness Score **Week N**:', 1, 15)
-    st.sidebar.write("###")
-      
     st.sidebar.subheader('🍽️📆 **Meals Check**')
     params_meals = st.sidebar.slider(
       'Meals check for the **last N days**:', 7, 150, 28)      
+    st.sidebar.write("###")
+    
+    st.sidebar.subheader('🔋💯 **Wellness Score**')
+    params_wellness = st.sidebar.slider(
+      'Wellness Score **Week N**:', 1, 15)
     st.sidebar.write("###")
 
     st.sidebar.subheader('🫀⌚ **Heart Rate (Real-Time)**')
@@ -2846,59 +2845,3 @@ else:
     with tab14:
         heart_rate_bar_and_line_chart_pXX(df_HR_rt, days=params_hrz_rt)
             
-    
-
-# ## Collections of data-viz functions 
-
-# ## 'all' and 'pXX' available
-# calories_per_month_bar_chart_pXX('all')        ## Calories per month
-# distance_per_month_bar_chart_pXX('all')        ## Distance per month
-# sport_activities_pie_chart_pXX('all')          ## Sport activities
-# sleep_quality_pie_chart_pXX('all')             ## Sleep quality
-
-# ## Only 'pXX' available
-# active_metrics_per_sport_bar_chart_pXX('p01')  ## Active metrics per sport -- two visuals:
-#                                                   ## active minutes and heart rate zones
-# resting_heart_rate_line_chart_pXX('p02')       ## Resting heart rate
-#                                                ## Injury
-# srpe_per_sport_boxplot_pXX('p04')              ## SRPE per sport activities. 
-#                                                   ## Opt: create two params: Individual and/or Team
-    
-# ## Only 'pXX' available, with options of parameters
-# hrz_bar_chart_pXX('p05', startfromzone=1)
-# active_minutes_bar_chart_pXX('p12', num_steps=False, startfromzone=1)
-# sleep_stages_by_day_step_chart_pXX('p16', date='2020-03-07')
-# total_sleep_stages_stacked_area_chart_pXX('p02', days=30)
-# meals_check_heatmap_pXX('p01', days=14)
-# wellness_score_radar_chart_pXX('p15', week_n=12)
-
-# ## Special case: From data cleaning, only 'pXX' available 
-# ## (1,5M rows *per* player gonna take quite amount of time)
-
-# ## Choice: Either make Dataframes per player, or
-# ## put function directly into the data-viz function
-# ## Time needed: 40s -- that way we're putting the chart at the *very* end
-
-# ## Choice 1:
-# HR_pXX_per_six_hour = clean_data_heart_rate_per_player('p01') 
-# heart_rate_bar_and_line_chart_pXX(HR_pXX_per_six_hour, 10)
-
-# heart_rate_bar_and_line_chart_pXX(
-#     clean_data_heart_rate_per_player('p08'), 8)
-
-# Description:
-        # "Calories Burned per Month",
-        # "Distances Walked per Month",
-        # "Sport Activities of the Whole Team",
-        # "Sleep Quality of the Whole Team",
-        # "Active Metrics (Active Minutes and HRZ) in Sport Activities",
-        # "Resting Heart Rate",
-        # "SRPE in Sport Activities",
-        # "Heart Rate Zones (Real-Time)",
-        # "Active Minutes (Real-Time)",
-        # "Sleep Stages by Date",    
-        # "Total Duration of Sleep Stages in X Days",
-        # "Wellness Score on a Given Week",
-        # "Meals Check in the last X Days",
->>>>>>> 6da912e19db2b036a6ef5abc981529d8ca05847e
-        # "Heart Rate (Real-Time)"
