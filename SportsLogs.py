@@ -1295,15 +1295,15 @@ else:
     params_sleep_duration = st.sidebar.slider(
         'Duration for the **last N days**:', 7, 150, 28)
     st.sidebar.write("###")
+
+    st.sidebar.subheader('🍽️📆 **Meals Check**')
+    params_meals = st.sidebar.slider(
+      'Meals check for the **last N days**:', 7, 150, 28)      
+    st.sidebar.write("###")
     
     st.sidebar.subheader('🔋💯 **Wellness Score**')
     params_wellness = st.sidebar.slider(
       'Wellness Score **Week N**:', 1, 15)
-    st.sidebar.write("###")
-      
-    st.sidebar.subheader('🍽️📆 **Meals Check**')
-    params_meals = st.sidebar.slider(
-      'Meals check for the **last N days**:', 7, 150, 28)      
     st.sidebar.write("###")
 
     st.sidebar.subheader('🫀⌚ **Heart Rate (Real-Time)**')
