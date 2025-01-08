@@ -1,4 +1,4 @@
-## SportsLogs: Sport Loggings Dashboard
+## SportsLogs: Sport Logging Dashboard
 
 SportsLogs is a dashboard visualizing the performance of 16 players through 15 datasets: from distance and calories, up to sleep stages and wellness score. 
 The data is taken from [PMData](https://www.kaggle.com/datasets/vlbthambawita/pmdata-a-sports-logging-dataset) where all data are collected from sources of 
