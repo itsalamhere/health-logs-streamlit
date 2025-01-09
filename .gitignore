@@ -2,3 +2,4 @@
 **/*.jpeg
 **/*.png
 !images/*.png
+**/heart_rate.json
