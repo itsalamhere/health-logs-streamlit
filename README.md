@@ -5,9 +5,23 @@ The data is taken from [PMData](https://www.kaggle.com/datasets/vlbthambawita/pm
 biometric sensors (**FitBit**), sports logging (**PMSys**), and subjective scores on all players (**Google Docs**). 
 All data has been cleaned, visualized through Jupyter Notebook as a group of functions, and then transferred to Streamlit as a web-app dashboard.
 
+Features available:
+* `🍕🔥 Calories`
+* `🛣️🏃‍➡️ Distances`
+* `⚽✊ Sport Activities`
+* `💤🔋 Sleep Quality`
+* `🫀🛌 Resting Heart Rate`
+* `📊⚽ Active Metrics in Sport Activities`
+* `💪⚽ SRPE in Sport Activities`
+* `🫀📍 Heart Rate Zones (Real-Time)`
+* `⚡⏲️ Active Minutes (Real-Time)`
+* `🌌🗓️ Sleep Stages by Date`
+* `⏲️🌌 Total Duration of Sleep Stages`
+* `🍽️📆 Meals Check in Last X Days`
+* `🔋💯 Wellness Score on a Given Week`
+
 Some notes:
-- Several data are not used such as pXX/fitbit/injury.json and pXX/food-images. In addition, there are a number of player with missing values.
-- Heart Rate Real-Time (the last 2 pictures) is created at first, but then retracted from the code due to limited space for the web-app.
+- `🫀⌚ Heart Rate (Real-Time)` (last 2 pictures) was created at first, but then retracted due to limited space for the web-app.
 
 ![screenshot](https://raw.githubusercontent.com/itsalamhere/sports-logs-streamlit/master/images/distances_all.png)
 
