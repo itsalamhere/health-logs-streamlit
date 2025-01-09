@@ -5,6 +5,10 @@ The data is taken from [PMData](https://www.kaggle.com/datasets/vlbthambawita/pm
 biometric sensors (**FitBit**), sports logging (**PMSys**), and subjective scores on all players (**Google Docs**). 
 All data has been cleaned, visualized through Jupyter Notebook as a group of functions, and then transferred to Streamlit as a web-app dashboard.
 
+Some notes:
+- Several data are not used such as pXX/fitbit/injury.json and pXX/food-images. In addition, there are a number of player with missing values.
+- Heart Rate Real-Time (the last 2 pictures) is created at first, but then retracted from the code due to limited space for the web-app.
+
 ![screenshot](https://raw.githubusercontent.com/itsalamhere/sports-logs-streamlit/master/images/distances_all.png)
 
 ![screenshot](https://raw.githubusercontent.com/itsalamhere/sports-logs-streamlit/master/images/calories_all.png)
