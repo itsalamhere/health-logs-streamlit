@@ -19,9 +19,7 @@ Features available:
 * `⏲️🌌 Total Duration of Sleep Stages`
 * `🍽️📆 Meals Check in Last X Days`
 * `🔋💯 Wellness Score on a Given Week`
-
-Some notes:
-- `🫀⌚ Heart Rate (Real-Time)` (last 2 pictures) was created at first, but then retracted due to limited space for the web-app.
+* `🫀⌚ Heart Rate (Real-Time)` (last 2 pictures, retracted due to limited space)
 
 ![screenshot](https://raw.githubusercontent.com/itsalamhere/sports-logs-streamlit/master/images/distances_all.png)
 
