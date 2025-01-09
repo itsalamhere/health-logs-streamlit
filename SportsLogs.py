@@ -1223,7 +1223,7 @@ st.header('SportsLogs: Sports Logging Dashboard')
 
 with st.sidebar.expander("**About SportsLogs**"):
     st.markdown("""
-    SportsLogs is a dashboard visualizing the performance of 16 players through 15 datasets:
+    SportsLogs is a dashboard visualizing the performance of 16 players through 10+ datasets:
     from distance and calories, up to sleep stages and wellness score.  \n
     The data is taken from [PMData](%s) where all data are collected from sources of 
     biometric sensors (**FitBit**), sports logging (**PMSys**), and subjective scores on all players (**Google Docs**).  \n
