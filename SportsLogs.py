@@ -1,4 +1,7 @@
 ## Import libraries:
+## NOTE: 
+## 20250109: Heart Rate (Real-Time) data-viz is retracted (commented)
+##    due to the limited space. We'll proceed with the rest of vizzes
     
 ### Data Processing
 import pandas as pd
@@ -1117,80 +1120,81 @@ def wellness_score_radar_chart_pXX(player='p01', week_n=1):
     
     st.pyplot(plt.gcf())
     
-    
-## Features available: Cleaning data provided to *Only* Individual players
+
+# ## RETRACTED FEATURE    
+# ## Features available: Cleaning data provided to *Only* Individual players
 
 
-### `heart_rate`:
-    ### Heart Rate per Player in Real-Time (6-hour interval),
-        ### Line Chart (avg) + Bar Chart (confidence)
+# ### `heart_rate`:
+#     ### Heart Rate per Player in Real-Time (6-hour interval),
+#         ### Line Chart (avg) + Bar Chart (confidence)
         
-@st.cache_data
-def clean_data_heart_rate_per_player(player='p01'):
+# @st.cache_data
+# def clean_data_heart_rate_per_player(player='p01'):
     
-    HR_pXX = pd.read_json(f"{player}/fitbit/heart_rate.json")
+#     HR_pXX = pd.read_json(f"{player}/fitbit/heart_rate.json")
 
-    HR_pXX = (HR_pXX.join(pd.json_normalize(HR_pXX['value']))
-        .drop('value', axis=1).rename(columns={'bpm':'hr_bpm'}))
+#     HR_pXX = (HR_pXX.join(pd.json_normalize(HR_pXX['value']))
+#         .drop('value', axis=1).rename(columns={'bpm':'hr_bpm'}))
 
-    HR_pXX['dateTime'] = HR_pXX['dateTime'].dt.floor('6h')
-    HR_pXX_per_six_hour = HR_pXX.groupby('dateTime').agg(
-        ['mean', 'max', 'min']).reset_index()
+#     HR_pXX['dateTime'] = HR_pXX['dateTime'].dt.floor('6h')
+#     HR_pXX_per_six_hour = HR_pXX.groupby('dateTime').agg(
+#         ['mean', 'max', 'min']).reset_index()
 
-    new_cols = ['datetime'] + ['_'.join(pair) 
-        for pair in HR_pXX_per_six_hour.columns[1:]]
-    HR_pXX_per_six_hour.columns = HR_pXX_per_six_hour.columns.droplevel(0)
-    HR_pXX_per_six_hour.columns = new_cols
+#     new_cols = ['datetime'] + ['_'.join(pair) 
+#         for pair in HR_pXX_per_six_hour.columns[1:]]
+#     HR_pXX_per_six_hour.columns = HR_pXX_per_six_hour.columns.droplevel(0)
+#     HR_pXX_per_six_hour.columns = new_cols
     
-    HR_pXX_per_six_hour = HR_pXX_per_six_hour.drop(
-        ['confidence_max', 'confidence_min'], axis=1)
-    HR_pXX_per_six_hour['confidence_mean'] = np.rint(
-        HR_pXX_per_six_hour['confidence_mean'])
+#     HR_pXX_per_six_hour = HR_pXX_per_six_hour.drop(
+#         ['confidence_max', 'confidence_min'], axis=1)
+#     HR_pXX_per_six_hour['confidence_mean'] = np.rint(
+#         HR_pXX_per_six_hour['confidence_mean'])
     
-    HR_pXX_per_six_hour['pXX'] = player
+#     HR_pXX_per_six_hour['pXX'] = player
     
-    return HR_pXX_per_six_hour
+#     return HR_pXX_per_six_hour
 
 
-def heart_rate_bar_and_line_chart_pXX(df: pd.DataFrame, days):
+# def heart_rate_bar_and_line_chart_pXX(df: pd.DataFrame, days):
 
-    conf_colors = {3: '#91FF61', 2: '#88AA79', 1: '#465540', 0:'#283024'}
-    bar_diffs   = df['hr_bpm_max'] - df['hr_bpm_min']
-    bar_colors  = df['confidence_mean'].map(conf_colors)
+#     conf_colors = {3: '#91FF61', 2: '#88AA79', 1: '#465540', 0:'#283024'}
+#     bar_diffs   = df['hr_bpm_max'] - df['hr_bpm_min']
+#     bar_colors  = df['confidence_mean'].map(conf_colors)
     
-    fig, ax = plt.subplots(figsize=(12, 6))
-    i_start = -1 * (4 * days + 1)
-    # Add by one since last day only display 3 rows, not 4.
+#     fig, ax = plt.subplots(figsize=(12, 6))
+#     i_start = -1 * (4 * days + 1)
+#     # Add by one since last day only display 3 rows, not 4.
     
-    ax.bar(df['datetime'][i_start:], bar_diffs[i_start:],
-        bottom = df['hr_bpm_min'][i_start:], 
-        color = bar_colors[i_start:], alpha = 0.6, width = 0.2)
+#     ax.bar(df['datetime'][i_start:], bar_diffs[i_start:],
+#         bottom = df['hr_bpm_min'][i_start:], 
+#         color = bar_colors[i_start:], alpha = 0.6, width = 0.2)
 
-    ax.plot(df['datetime'][i_start:], df['hr_bpm_mean'][i_start:],
-        color = 'white', linewidth = 1, marker = 'o', label = 'HR_avg')
+#     ax.plot(df['datetime'][i_start:], df['hr_bpm_mean'][i_start:],
+#         color = 'white', linewidth = 1, marker = 'o', label = 'HR_avg')
     
-    player = df['pXX'].max()
+#     player = df['pXX'].max()
 
-    ax.set_title(f'Heart Rate in latest {days} days, {player} (grouped every 6 hours)',
-        fontsize=15, fontweight='bold')
-    ax.set_xlabel('Time')
-    ax.set_ylabel('Heart Rate (bpm)')
-    ax.grid(alpha=0.4)
+#     ax.set_title(f'Heart Rate in latest {days} days, {player} (grouped every 6 hours)',
+#         fontsize=15, fontweight='bold')
+#     ax.set_xlabel('Time')
+#     ax.set_ylabel('Heart Rate (bpm)')
+#     ax.grid(alpha=0.4)
     
-    legend_elements = [
-        Patch(facecolor=conf_colors[3], edgecolor='none', alpha=0.5, label='Confidence = 3'),
-        Patch(facecolor=conf_colors[2], edgecolor='none', alpha=0.5, label='Confidence = 2'),
-        Patch(facecolor=conf_colors[1], edgecolor='none', alpha=0.5, label='Confidence = 1'),
-        Patch(facecolor=conf_colors[0], edgecolor='none', alpha=0.5, label='Confidence = 0')
-    ]
+#     legend_elements = [
+#         Patch(facecolor=conf_colors[3], edgecolor='none', alpha=0.5, label='Confidence = 3'),
+#         Patch(facecolor=conf_colors[2], edgecolor='none', alpha=0.5, label='Confidence = 2'),
+#         Patch(facecolor=conf_colors[1], edgecolor='none', alpha=0.5, label='Confidence = 1'),
+#         Patch(facecolor=conf_colors[0], edgecolor='none', alpha=0.5, label='Confidence = 0')
+#     ]
     
-    ax.legend(handles = legend_elements + 
-        [Patch(color='white', label='HR_avg')], loc='best')
+#     ax.legend(handles = legend_elements + 
+#         [Patch(color='white', label='HR_avg')], loc='best')
 
-    plt.xticks(rotation=45)
-    plt.tight_layout()
+#     plt.xticks(rotation=45)
+#     plt.tight_layout()
         
-    st.pyplot(fig)
+#     st.pyplot(fig)
     
     
 #### MAIN FUNCTION
@@ -1206,7 +1210,7 @@ df_sleep_chr         = clean_data_sleep()
 df_sleep_score       = clean_data_sleep_score()
 df_reporting         = clean_data_reporting()
 df_wellness_per_week = clean_data_wellness()
-df_HR_rt             = clean_data_heart_rate_per_player()
+# df_HR_rt             = clean_data_heart_rate_per_player()
 
 #### STREAMLIT COMPONENTS
 
@@ -1306,17 +1310,17 @@ else:
       'Wellness Score **Week N**:', 1, 15)
     st.sidebar.write("###")
 
-    st.sidebar.subheader('🫀⌚ **Heart Rate (Real-Time)**')
-    params_hrz_rt = st.sidebar.slider(
-      'Heart rate for the **last N days**:', 7, 150, 28)      
-    st.sidebar.write("###")
+    # st.sidebar.subheader('🫀⌚ **Heart Rate (Real-Time)**')
+    # params_hrz_rt = st.sidebar.slider(
+    #   'Heart rate for the **last N days**:', 7, 150, 28)      
+    # st.sidebar.write("###")
     
     
     ### Showing the data-viz of tabs at the main area
     
     ( tab1,  tab2,  tab3,  tab4,  tab5,
       tab6,  tab7,  tab8,  tab9, tab10,
-     tab11, tab12, tab13, tab14) = st.tabs([
+     tab11, tab12, tab13) = st.tabs([ # tab14
         "🍕🔥 Calories",
         "🛣️🏃‍➡️ Distances",
         "⚽✊ Sport Activities",
@@ -1329,8 +1333,8 @@ else:
         "🌌🗓️ Sleep Stages by Date",    
         "⏲️🌌 Total Duration of Sleep Stages",
         "🍽️📆 Meals Check in Last X Days",
-        "🔋💯 Wellness Score on a Given Week",
-        "🫀⌚ Heart Rate (Real-Time)"
+        "🔋💯 Wellness Score on a Given Week"
+        # "🫀⌚ Heart Rate (Real-Time)"
         ])
     
     with tab1:
@@ -1391,6 +1395,6 @@ else:
     with tab13:
         wellness_score_radar_chart_pXX(
             selected_player, week_n=params_wellness)
-    with tab14:
-        heart_rate_bar_and_line_chart_pXX(df_HR_rt, days=params_hrz_rt)
+    # with tab14:
+    #   heart_rate_bar_and_line_chart_pXX(df_HR_rt, days=params_hrz_rt)
             
